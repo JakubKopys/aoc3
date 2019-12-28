@@ -1,0 +1,26 @@
+package utils
+
+import (
+	"strconv"
+	"strings"
+)
+
+type Movement struct {
+	Direction byte
+	Distance  int
+}
+
+func MovementsFromString(str string) []Movement {
+	segments := strings.Split(str, ",")
+
+	movements := []Movement{}
+	for _, segment := range segments {
+		distance, _ := strconv.Atoi(string(segment[1]))
+		movements = append(
+			movements,
+			Movement{segment[0], distance},
+		)
+	}
+
+	return movements
+}
